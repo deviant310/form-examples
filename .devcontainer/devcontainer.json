@@ -1,0 +1,31 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+  "name": "Form examples",
+  "runArgs": [
+    "--name",
+    "form-examples"
+  ],
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "node",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+  "mounts": [
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig",
+      "target": "/home/vscode/.gitconfig",
+      "type": "bind"
+    }
+  ],
+  "containerEnv": {
+    "DEV_SERVER_HOST": "0.0.0.0"
+  },
+  "postCreateCommand": "npm i"
+}
