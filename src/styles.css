@@ -1,0 +1,45 @@
+body {
+  font-family: system-ui;
+}
+
+h1:first-child,
+h2:first-child {
+  margin-top: 0;
+}
+
+.top-panel {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  position: relative;
+  background-color: rgb(231, 231, 231);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 24px;
+  width: 200px;
+  height: 100%;
+  box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-menu li {
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.sidebar-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.rhf-form {
+  background-color: pink;
+  padding: 20px;
+}
