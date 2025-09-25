@@ -4,7 +4,7 @@ import { createTogglesContext } from "./utils/toggle";
 export const useNavigator = () => {
   const { value: route, setValue: navigate } = useStore<Route>(
     "navigator",
-    "home"
+    "home",
   );
 
   return { route, navigate };

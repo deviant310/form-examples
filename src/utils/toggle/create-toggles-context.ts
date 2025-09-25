@@ -1,6 +1,6 @@
 import { createContext, createElement, FC, ReactNode, useMemo } from "react";
-import { createToggleHook } from "./create-toggle-hook";
 
+import { createToggleHook } from "./create-toggle-hook";
 import { Toggle } from "./toggle";
 import {
   defaultOptions,
@@ -9,7 +9,7 @@ import {
 } from "./toggles-context";
 
 export const createTogglesContext = (
-  options: TogglesContextOptions = defaultOptions
+  options: TogglesContextOptions = defaultOptions,
 ) => {
   const buildContextValue = (): TogglesContextValue => ({
     toggles: new Map<string, Toggle>(),

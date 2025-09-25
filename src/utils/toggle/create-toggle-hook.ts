@@ -1,4 +1,5 @@
 import { Context, useContext, useEffect } from "react";
+
 import { Toggle } from "./toggle";
 import { TogglesContextValue } from "./toggles-context";
 import { useToggleInstance } from "./use-toggle-instance";
@@ -25,7 +26,7 @@ export function createToggleHook(context: Context<TogglesContextValue>) {
               toggle.turnOff();
             }
         }),
-      [toggle, options]
+      [toggle, options, toggles, toggleKey],
     );
 
     return useToggleInstance(toggle);

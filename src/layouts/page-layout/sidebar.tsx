@@ -1,8 +1,4 @@
-import {
-  SidebarToggleProvider,
-  useNavigator,
-  useSidebarToggle,
-} from "../../providers";
+import { useNavigator, useSidebarToggle } from "../../providers";
 
 export const Sidebar = () => {
   const { navigate } = useNavigator();

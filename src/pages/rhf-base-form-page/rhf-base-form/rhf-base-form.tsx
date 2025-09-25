@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 
 interface FormValues {
@@ -16,9 +15,7 @@ export const RHFBaseForm = () => {
     },
   });
 
-  const submit: SubmitHandler<FormValues> = handleSubmit((data) =>
-    console.log(data)
-  );
+  const submit = handleSubmit(data => console.log(data));
 
   //const { ref, name, defaultValue, onChange } = register("name");
 

@@ -1,11 +1,6 @@
-import { FC, PropsWithChildren } from "react";
-import {
-  SidebarToggleProvider,
-  useNavigator,
-  useSidebarToggle,
-} from "./providers";
-import { RHFBaseFormPage, RHFCustomUIFormPage } from "./pages";
 import { PageLayout } from "./layouts";
+import { RHFBaseFormPage, RHFCustomUIFormPage } from "./pages";
+import { useNavigator } from "./providers";
 import "./styles.css";
 
 export default function App() {
@@ -18,6 +13,4 @@ export default function App() {
   }[route];
 }
 
-const HomePage = () => {
-  return <PageLayout>home</PageLayout>;
-};
+const HomePage = () => <PageLayout>home</PageLayout>;

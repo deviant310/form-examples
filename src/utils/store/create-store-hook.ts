@@ -1,7 +1,9 @@
 import { Context, useContext } from "react";
+
 import { Store } from "./store";
 import { useStoreInstance } from "./use-store-instance";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createStoreHook(context: Context<Map<string, Store<any>>>) {
   return <StoreHook>((storeKey, initialValue) => {
     const stores = useContext(context);
@@ -17,10 +19,11 @@ export function createStoreHook(context: Context<Map<string, Store<any>>>) {
 }
 
 interface StoreHook {
-  <Value>(storeKey: string, initialValue: Value): ReturnType<
-    typeof useStoreInstance<Value>
-  >;
-  <Value = undefined>(storeKey: string): ReturnType<
-    typeof useStoreInstance<Value | undefined>
-  >;
+  <Value>(
+    storeKey: string,
+    initialValue: Value,
+  ): ReturnType<typeof useStoreInstance<Value>>;
+  <Value = undefined>(
+    storeKey: string,
+  ): ReturnType<typeof useStoreInstance<Value | undefined>>;
 }

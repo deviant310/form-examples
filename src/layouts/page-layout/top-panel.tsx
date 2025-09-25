@@ -1,4 +1,5 @@
 import { useSidebarToggle } from "../../providers";
+
 import { Sidebar } from "./sidebar";
 
 export const TopPanel = () => {

@@ -3,10 +3,7 @@ import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-const {
-  DEV_SERVER_HOST,
-  DEV_SERVER_PORT,
-} = process.env;
+const { DEV_SERVER_HOST, DEV_SERVER_PORT } = process.env;
 
 /**
  * https://vitejs.dev/config/

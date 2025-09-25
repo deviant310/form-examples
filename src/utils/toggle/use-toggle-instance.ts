@@ -4,8 +4,8 @@ import { Toggle } from "./toggle";
 
 export const useToggleInstance = (toggle: Toggle) => {
   const isOn = useSyncExternalStore(
-    (dispatch) => toggle.onChange(dispatch),
-    () => toggle.isOn
+    dispatch => toggle.onChange(dispatch),
+    () => toggle.isOn,
   );
 
   const turnOn = useCallback(() => toggle.turnOn(), [toggle]);

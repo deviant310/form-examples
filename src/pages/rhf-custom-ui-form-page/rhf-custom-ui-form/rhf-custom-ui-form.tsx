@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { FC } from "react";
+
 import { useForm, useController } from "react-hook-form";
 
 interface FormValues {
@@ -20,9 +21,7 @@ export const RHFCustomUIForm = () => {
   const { field: limitField } = useController({ name: "limit", control });
   const { field: amountField } = useController({ name: "amount", control });
 
-  const submit: SubmitHandler<FormValues> = handleSubmit((data) =>
-    console.log(data)
-  );
+  const submit = handleSubmit(data => console.log(data));
 
   console.log("render");
 
