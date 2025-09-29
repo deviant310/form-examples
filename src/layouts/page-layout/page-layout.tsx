@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 
-import { SidebarToggleProvider } from "../../providers";
+import { SidebarToggleProvider } from "../../providers/sidebar-toggle";
 
 import { TopPanel } from "./top-panel";
 

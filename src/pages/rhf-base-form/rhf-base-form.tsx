@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 
+import { PageLayout } from "../../layouts";
+
 interface FormValues {
   name: string;
 }
@@ -8,7 +10,7 @@ interface FormValues {
  * по умолчанию RHF работает с неконтролируемыми инпутами
  * основные пропсы register - ref, name, onChange
  */
-export const RHFBaseForm = () => {
+const RHFBaseForm = () => {
   const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       name: "Anton",
@@ -34,3 +36,13 @@ export const RHFBaseForm = () => {
     </div>
   );
 };
+
+export const RHFBaseFormPage = () => (
+  <PageLayout>
+    <h1>React Hook Form</h1>
+    <div className="rhf-form">
+      <h2>Base form example (uncontrolled inputs)</h2>
+      <RHFBaseForm />
+    </div>
+  </PageLayout>
+);

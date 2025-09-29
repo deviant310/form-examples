@@ -1,4 +1,4 @@
-import { useSidebarToggle } from "../../providers";
+import { useSidebarToggle } from "../../providers/sidebar-toggle";
 
 import { Sidebar } from "./sidebar";
 

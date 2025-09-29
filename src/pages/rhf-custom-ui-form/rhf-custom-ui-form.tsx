@@ -1,6 +1,7 @@
-import { FC } from "react";
-
 import { useForm, useController } from "react-hook-form";
+
+import { PageLayout } from "../../layouts";
+import { AmountInputRow, InputRow } from "../../ui";
 
 interface FormValues {
   limit: string;
@@ -10,7 +11,7 @@ interface FormValues {
 /**
  * useController хук или Controller компонент
  */
-export const RHFCustomUIForm = () => {
+const RHFCustomUIForm = () => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       limit: "Payment card limit",
@@ -45,44 +46,12 @@ export const RHFCustomUIForm = () => {
   );
 };
 
-const InputRow: FC<InputRowProps> = ({ label, value, onChange }) => (
-  <fieldset>
-    <label>{label}</label>
-    <div>
-      <input
-        type="text"
-        value={value}
-        onChange={({ target }) => onChange(target.value)}
-      />
+export const RHFCustomUIFormPage = () => (
+  <PageLayout>
+    <h1>React Hook Form</h1>
+    <div className="rhf-form">
+      <h2>Custom UI form example (controlled inputs)</h2>
+      <RHFCustomUIForm />
     </div>
-  </fieldset>
+  </PageLayout>
 );
-
-interface InputRowProps {
-  label: string;
-  value: string;
-  onChange(value: string): void;
-}
-
-const AmountInputRow: FC<AmountInputRowProps> = ({
-  label,
-  value,
-  onChange,
-}) => (
-  <fieldset>
-    <label>{label}</label>
-    <div>
-      <input
-        type="number"
-        value={value}
-        onChange={({ target }) => onChange(+target.value)}
-      />
-    </div>
-  </fieldset>
-);
-
-interface AmountInputRowProps {
-  label: string;
-  value: number;
-  onChange(value: number): void;
-}
