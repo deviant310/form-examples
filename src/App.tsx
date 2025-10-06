@@ -3,14 +3,16 @@ import {
   RHFBaseFormPage,
   RHFContextFormPage,
   RHFCustomUIFormPage,
-  RHFDerivedContextFormPage,
+  RHFDerivedContextFormsPage,
+  RHFReusableFormsPage,
 } from "./pages";
 import {
   homeRoute,
   rhfBaseFormRoute,
   rhfContextFormRoute,
   rhfCustomUIFormRoute,
-  rhfDerivedContextFormRoute,
+  rhfDerivedContextFormsRoute,
+  rhfReusableFormsRoute,
 } from "./routes";
 import { Router } from "./utils/router";
 import "./styles.css";
@@ -24,5 +26,6 @@ const routes = [
   [rhfBaseFormRoute, RHFBaseFormPage] as const,
   [rhfCustomUIFormRoute, RHFCustomUIFormPage] as const,
   [rhfContextFormRoute, RHFContextFormPage] as const,
-  [rhfDerivedContextFormRoute, RHFDerivedContextFormPage] as const,
+  [rhfDerivedContextFormsRoute, RHFDerivedContextFormsPage] as const,
+  [rhfReusableFormsRoute, RHFReusableFormsPage] as const,
 ];

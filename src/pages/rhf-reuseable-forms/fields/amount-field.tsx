@@ -1,5 +1,6 @@
+import { useController } from "react-hook-form";
+
 import { AmountInputRow } from "../../../ui";
-import { useController } from "../provider";
 
 export const AmountField = () => {
   const { field } = useController({ name: "amount" });

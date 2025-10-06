@@ -1,7 +1,7 @@
-import { useForm } from "../provider";
+import { useFormContext } from "react-hook-form";
 
 export const SubmitButton = () => {
-  const { handleSubmit } = useForm();
+  const { handleSubmit } = useFormContext();
 
   const submit = handleSubmit(data => console.log(data));
 

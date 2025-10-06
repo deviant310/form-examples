@@ -4,7 +4,8 @@ import {
   rhfBaseFormRoute,
   rhfCustomUIFormRoute,
   rhfContextFormRoute,
-  rhfDerivedContextFormRoute,
+  rhfDerivedContextFormsRoute,
+  rhfReusableFormsRoute,
 } from "../../routes";
 import { useNavigator } from "../../utils/router";
 
@@ -27,8 +28,11 @@ export const Sidebar = () => {
         <li onClick={() => navigate(rhfContextFormRoute())}>
           Form with context
         </li>
-        <li onClick={() => navigate(rhfDerivedContextFormRoute())}>
-          Form with derived context
+        <li onClick={() => navigate(rhfReusableFormsRoute())}>
+          Reusable forms
+        </li>
+        <li onClick={() => navigate(rhfDerivedContextFormsRoute())}>
+          Forms with derived context
         </li>
       </ul>
     </div>
