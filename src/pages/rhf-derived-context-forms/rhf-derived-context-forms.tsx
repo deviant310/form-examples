@@ -1,7 +1,6 @@
 import { PageLayout } from "../../layouts";
 import { FormStageProvider, useFormStage } from "../../providers";
 
-import { AnotherForm, AnotherFormProvider } from "./another-form";
 import { PrimaryForm, PrimaryFormProvider } from "./primary-form";
 import { SecondaryForm, SecondaryFormProvider } from "./secondary-form";
 
@@ -24,12 +23,6 @@ const RHFDerivedContextForms = () => {
           <SecondaryForm />
         </div>
       )}
-
-      {formStage === "another" && (
-        <div className="rhf-form">
-          <AnotherForm />
-        </div>
-      )}
     </div>
   );
 };
@@ -40,22 +33,10 @@ const Actions = () => {
   return (
     <div className="actions">
       {formStage !== "primary" && (
-        <button
-          onClick={() =>
-            setFormStage(formStage === "another" ? "secondary" : "primary")
-          }
-        >
-          Back
-        </button>
+        <button onClick={() => setFormStage("primary")}>Back</button>
       )}
-      {formStage !== "another" && (
-        <button
-          onClick={() =>
-            setFormStage(formStage === "primary" ? "secondary" : "another")
-          }
-        >
-          Next
-        </button>
+      {formStage !== "secondary" && (
+        <button onClick={() => setFormStage("secondary")}>Next</button>
       )}
     </div>
   );
@@ -66,14 +47,12 @@ export const RHFDerivedContextFormsPage = () => (
     <FormStageProvider>
       <PrimaryFormProvider>
         <SecondaryFormProvider>
-          <AnotherFormProvider>
-            <h1>React Hook Form</h1>
-            <div className="header">
-              <h2>Forms with derived contexts</h2>
-              <Actions />
-            </div>
-            <RHFDerivedContextForms />
-          </AnotherFormProvider>
+          <h1>React Hook Form</h1>
+          <div className="header">
+            <h2>Forms with derived contexts</h2>
+            <Actions />
+          </div>
+          <RHFDerivedContextForms />
         </SecondaryFormProvider>
       </PrimaryFormProvider>
     </FormStageProvider>

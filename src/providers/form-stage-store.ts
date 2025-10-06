@@ -1,11 +1,11 @@
 import { createStoresContext } from "../utils/store";
 
-type Stage = "primary" | "secondary" | "another";
+type FormStage = "primary" | "secondary" | "another";
 
 const { StoresProvider: FormStageProvider, useStore } = createStoresContext();
 
 export const useFormStage = () => {
-  const { value: formStage, setValue: setFormStage } = useStore<Stage>(
+  const { value: formStage, setValue: setFormStage } = useStore<FormStage>(
     "form-stage",
     "primary",
   );

@@ -27,7 +27,6 @@ export function createFormContext<Values extends FieldValues = FieldValues>() {
     children,
     ...props
   }) => {
-    debugger;
     const methods = useReactHookForm<Values>(props);
 
     return createElement(Provider, { value: methods }, children);

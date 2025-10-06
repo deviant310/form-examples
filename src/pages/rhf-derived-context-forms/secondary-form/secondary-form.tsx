@@ -1,7 +1,5 @@
 import { FC, PropsWithChildren } from "react";
 
-import { UseFormProps } from "react-hook-form";
-
 import { createFormContext } from "../../../utils/form";
 
 import { AgeField, NameField } from "./fields";
@@ -18,27 +16,24 @@ export const {
   useController: useSecondaryFormController,
 } = createFormContext<SecondaryFormValues>();
 
-export const SecondaryFormProvider: FC<
-  PropsWithChildren & Pick<UseFormProps<SecondaryFormValues>, "formControl">
-> = ({ children, formControl }) => (
+export const SecondaryFormProvider: FC<PropsWithChildren> = ({ children }) => (
   <FormProvider
     defaultValues={{
       name: "Anton",
       age: 33,
     }}
-    formControl={formControl}
   >
     {children}
   </FormProvider>
 );
 
-export const SecondaryForm: FC<{ title?: string }> = ({ title }) => {
+export const SecondaryForm = () => {
   const { handleSubmit } = useSecondaryForm();
   const submit = handleSubmit(data => console.log(data));
 
   return (
     <div>
-      <h3>{title ?? "Secondary Form"}</h3>
+      <h3>Secondary Form</h3>
 
       <NameField />
 
