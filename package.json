@@ -7,11 +7,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "^5.66.9",
     "@tanstack/react-query-devtools": "^5.66.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.62.0"
+    "react-hook-form": "^7.62.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",

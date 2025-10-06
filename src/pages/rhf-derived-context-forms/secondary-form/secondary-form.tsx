@@ -1,31 +1,5 @@
-import { FC, PropsWithChildren } from "react";
-
-import { createFormContext } from "../../../utils/form";
-
 import { AgeField, NameField } from "./fields";
-
-export interface SecondaryFormValues {
-  name: string;
-  age: number;
-}
-
-export const {
-  FormProvider,
-  useForm: useSecondaryForm,
-  useFormState: useSecondaryFormState,
-  useController: useSecondaryFormController,
-} = createFormContext<SecondaryFormValues>();
-
-export const SecondaryFormProvider: FC<PropsWithChildren> = ({ children }) => (
-  <FormProvider
-    defaultValues={{
-      name: "Anton",
-      age: 33,
-    }}
-  >
-    {children}
-  </FormProvider>
-);
+import { useSecondaryForm } from "./provider";
 
 export const SecondaryForm = () => {
   const { handleSubmit } = useSecondaryForm();

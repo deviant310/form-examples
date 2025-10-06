@@ -6,6 +6,7 @@ import {
   rhfContextFormRoute,
   rhfDerivedContextFormsRoute,
   rhfReusableFormsRoute,
+  rhfValidationFormRoute,
 } from "../../routes";
 import { useNavigator } from "../../utils/router";
 
@@ -34,6 +35,7 @@ export const Sidebar = () => {
         <li onClick={() => navigate(rhfDerivedContextFormsRoute())}>
           Forms with derived context
         </li>
+        <li onClick={() => navigate(rhfValidationFormRoute())}>Validation</li>
       </ul>
     </div>
   );

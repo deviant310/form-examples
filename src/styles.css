@@ -60,3 +60,8 @@ h2:first-child {
   background-color: pink;
   padding: 20px;
 }
+
+.error {
+  color: red;
+  font-size: 12px
+}

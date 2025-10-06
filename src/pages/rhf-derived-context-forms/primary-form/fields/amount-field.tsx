@@ -1,5 +1,5 @@
 import { AmountInputRow } from "../../../../ui";
-import { usePrimaryFormController } from "../primary-form";
+import { usePrimaryFormController } from "../provider";
 
 export const AmountField = () => {
   const { field } = usePrimaryFormController({ name: "amount" });

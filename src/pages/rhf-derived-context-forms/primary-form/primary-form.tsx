@@ -1,31 +1,5 @@
-import { FC, PropsWithChildren } from "react";
-
-import { createFormContext } from "../../../utils/form";
-
 import { AmountField, LimitTypeField } from "./fields";
-
-export interface PrimaryFormValues {
-  limit: string;
-  amount: number;
-}
-
-export const {
-  FormProvider,
-  useForm: usePrimaryForm,
-  useFormState: usePrimaryFormState,
-  useController: usePrimaryFormController,
-} = createFormContext<PrimaryFormValues>();
-
-export const PrimaryFormProvider: FC<PropsWithChildren> = ({ children }) => (
-  <FormProvider
-    defaultValues={{
-      limit: "Payment card limit",
-      amount: 0,
-    }}
-  >
-    {children}
-  </FormProvider>
-);
+import { usePrimaryForm } from "./provider";
 
 export const PrimaryForm = () => {
   const { handleSubmit } = usePrimaryForm();

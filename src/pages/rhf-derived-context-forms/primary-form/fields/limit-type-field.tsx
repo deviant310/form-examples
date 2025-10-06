@@ -1,5 +1,5 @@
 import { InputRow } from "../../../../ui";
-import { usePrimaryFormController } from "../primary-form";
+import { usePrimaryFormController } from "../provider";
 
 export const LimitTypeField = () => {
   const { field } = usePrimaryFormController({ name: "limit" });

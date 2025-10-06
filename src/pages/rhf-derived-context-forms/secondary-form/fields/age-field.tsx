@@ -1,5 +1,5 @@
 import { AmountInputRow } from "../../../../ui";
-import { useSecondaryFormController } from "../secondary-form";
+import { useSecondaryFormController } from "../provider";
 
 export const AgeField = () => {
   const { field } = useSecondaryFormController({ name: "age" });

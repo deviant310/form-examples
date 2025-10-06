@@ -5,6 +5,7 @@ import {
   RHFCustomUIFormPage,
   RHFDerivedContextFormsPage,
   RHFReusableFormsPage,
+  RHFValidationFormPage,
 } from "./pages";
 import {
   homeRoute,
@@ -13,6 +14,7 @@ import {
   rhfCustomUIFormRoute,
   rhfDerivedContextFormsRoute,
   rhfReusableFormsRoute,
+  rhfValidationFormRoute,
 } from "./routes";
 import { Router } from "./utils/router";
 import "./styles.css";
@@ -28,4 +30,5 @@ const routes = [
   [rhfContextFormRoute, RHFContextFormPage] as const,
   [rhfDerivedContextFormsRoute, RHFDerivedContextFormsPage] as const,
   [rhfReusableFormsRoute, RHFReusableFormsPage] as const,
+  [rhfValidationFormRoute, RHFValidationFormPage] as const,
 ];

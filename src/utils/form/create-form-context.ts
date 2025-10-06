@@ -18,16 +18,31 @@ import {
   UseFormStateProps,
 } from "react-hook-form";
 
-export function createFormContext<Values extends FieldValues = FieldValues>() {
-  const formContext = createContext<UseFormReturn<Values> | null>(null);
+export function createFormContext<
+  Values extends FieldValues = FieldValues,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Context = any,
+  TransformedValues = Values,
+>() {
+  const formContext = createContext<UseFormReturn<
+    Values,
+    Context,
+    TransformedValues
+  > | null>(null);
 
   const { Provider } = formContext;
 
-  const FormProvider: FC<PropsWithChildren & UseFormProps<Values>> = ({
-    children,
-    ...props
-  }) => {
-    const methods = useReactHookForm<Values>(props);
+  const FormProvider: FC<
+    PropsWithChildren &
+      UseFormProps<Values, Context, TransformedValues> & {
+        defaultValues:
+          | (Values extends (payload?: unknown) => Promise<Values>
+              ? Awaited<Values>
+              : Values)
+          | ((payload?: unknown) => Promise<Values>);
+      }
+  > = ({ children, ...props }) => {
+    const methods = useReactHookForm<Values, Context, TransformedValues>(props);
 
     return createElement(Provider, { value: methods }, children);
   };
@@ -43,14 +58,16 @@ export function createFormContext<Values extends FieldValues = FieldValues>() {
 
   const useForm = () => useDefinedContext();
 
-  const useFormState = (props?: Omit<UseFormStateProps<Values>, "control">) => {
+  const useFormState = (
+    props?: Omit<UseFormStateProps<Values, TransformedValues>, "control">,
+  ) => {
     const { control } = useDefinedContext();
 
     return useReactHookFormState({ control, ...props });
   };
 
   const useController = <Name extends FieldPath<Values>>(
-    props: Omit<UseControllerProps<Values, Name>, "control">,
+    props: Omit<UseControllerProps<Values, Name, TransformedValues>, "control">,
   ) => {
     const { control } = useDefinedContext();
 
