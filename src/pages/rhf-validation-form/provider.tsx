@@ -12,7 +12,7 @@ interface FormValues {
   amount: number | null;
 }
 
-interface FormValidValues {
+interface FormValidValues extends FormValues {
   source: string;
   amount: number;
 }
@@ -37,17 +37,13 @@ const schema = z.object({
     .min(0, { message: "Amount must be at least 0" }),
 });
 
-export const validationFormResolver = zodResolver<
-  FormValues,
-  unknown,
-  FormValidValues
->(schema);
+const resolver = zodResolver<FormValues, unknown, FormValidValues>(schema);
 
 export const ValidationFormProvider: FC<PropsWithChildren> = ({ children }) => (
   <FormProvider
     defaultValues={{ source: null, amount: null }}
     mode="all"
-    resolver={validationFormResolver}
+    resolver={resolver}
     /* resolver={({ source, amount }) => {
       const errors: FieldErrors<FormValues> = {};
 

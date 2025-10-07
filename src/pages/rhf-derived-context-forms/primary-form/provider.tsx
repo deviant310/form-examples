@@ -20,6 +20,7 @@ export const PrimaryFormProvider: FC<PropsWithChildren> = ({ children }) => (
       limit: "Payment card limit",
       amount: 0,
     }}
+    mode="all"
   >
     {children}
   </FormProvider>
