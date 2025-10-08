@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 export type FraudTypology = "Crypto" | "Other";
 
 export interface FormValues {
@@ -8,18 +6,11 @@ export interface FormValues {
   fraudTypology?: FraudTypology | null;
 }
 
-const defined = <Data>(data: Data, ctx: z.core.$RefinementCtx<Data>) => {
-  for (const key in data) {
-    if (typeof data[key as keyof typeof data] === "undefined")
-      ctx.addIssue({
-        code: "custom",
-        path: [key],
-        message: `${key} must be defined`,
-      });
-  }
-};
+export interface FormValidValues extends FormValues {
+  fraudTypology?: FraudTypology;
+}
 
-export const validSchema = z
+/* export const validSchema = z
   .object({
     comment: z.string().nonempty("Comment required"),
     addToTarget: z.boolean(),
@@ -30,6 +21,9 @@ export const validSchema = z
       )
       .optional(),
   })
-  .superRefine(defined);
+  .refine(data => !("fraudTypology" in data) || data.fraudTypology, {
+    error: "Fraud typology is required",
+    path: ["fraudTypology"],
+  }); */
 
-export type FormValidValues = Extract<z.infer<typeof validSchema>, FormValues>;
+//export type FormValidValues = Extract<z.infer<typeof validSchema>, FormValues>;

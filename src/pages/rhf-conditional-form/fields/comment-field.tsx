@@ -9,6 +9,9 @@ export const CommentField = () => {
     fieldState: { error },
   } = useController<FormValues, "comment">({
     name: "comment",
+    rules: {
+      required: "Comment is required",
+    },
   });
 
   return (

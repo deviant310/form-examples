@@ -1,7 +1,7 @@
 import { useController } from "react-hook-form";
 
 import { SelectRow } from "../../../ui";
-import { FormValues } from "../schema";
+import { FormValidValues, FormValues } from "../schema";
 
 const fraudTypologiesOptions: Array<string> = ["Crypto", "Other"];
 
@@ -9,8 +9,11 @@ export const FraudTypologyField = () => {
   const {
     field,
     fieldState: { error },
-  } = useController<FormValues, "fraudTypology">({
+  } = useController<FormValues, "fraudTypology", FormValidValues>({
     name: "fraudTypology",
+    /* rules: {
+      required: "Fraud typology is required",
+    }, */
   });
 
   return (
