@@ -31,7 +31,7 @@ const RHFConditionalForm = () => {
   const submit = methods.handleSubmit(data => console.log(data));
 
   const addToTarget = methods.watch("addToTarget");
-
+  debugger;
   return (
     <FormProvider {...methods}>
       <div>

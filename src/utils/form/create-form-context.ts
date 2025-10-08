@@ -16,6 +16,7 @@ import {
   UseControllerProps,
   FieldPath,
   UseFormStateProps,
+  createFormControl,
 } from "react-hook-form";
 
 export function createFormContext<
@@ -29,6 +30,7 @@ export function createFormContext<
     Context,
     TransformedValues
   > | null>(null);
+  const formControl = createFormControl<Values, Context, TransformedValues>();
 
   const { Provider } = formContext;
 
@@ -42,7 +44,10 @@ export function createFormContext<
           | ((payload?: unknown) => Promise<Values>);
       }
   > = ({ children, ...props }) => {
-    const methods = useReactHookForm<Values, Context, TransformedValues>(props);
+    const methods = useReactHookForm<Values, Context, TransformedValues>({
+      ...props,
+      formControl,
+    });
 
     return createElement(Provider, { value: methods }, children);
   };
