@@ -1,5 +1,3 @@
-import { FC, PropsWithChildren } from "react";
-
 import { createFormContext } from "../../../utils/form";
 
 export interface PrimaryFormValues {
@@ -7,23 +5,15 @@ export interface PrimaryFormValues {
   amount: number;
 }
 
-const {
-  FormProvider,
+export const {
+  FormProvider: PrimaryFormProvider,
   useForm: usePrimaryForm,
   useFormState: usePrimaryFormState,
   useController: usePrimaryFormController,
-} = createFormContext<PrimaryFormValues>();
-
-export const PrimaryFormProvider: FC<PropsWithChildren> = ({ children }) => (
-  <FormProvider
-    defaultValues={{
-      limit: "Payment card limit",
-      amount: 0,
-    }}
-    mode="all"
-  >
-    {children}
-  </FormProvider>
-);
-
-export { usePrimaryForm, usePrimaryFormState, usePrimaryFormController };
+} = createFormContext<PrimaryFormValues>({
+  defaultValues: {
+    limit: "Payment card limit",
+    amount: 0,
+  },
+  mode: "all",
+});

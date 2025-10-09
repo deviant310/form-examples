@@ -1,56 +1,49 @@
-import {
-  createContext,
-  createElement,
-  FC,
-  PropsWithChildren,
-  useContext,
-} from "react";
+import type { FC, PropsWithChildren } from "react";
+import { createContext, createElement, useContext } from "react";
 
 import {
-  FieldValues,
-  useForm as useReactHookForm,
+  createFormControl,
   useController as useReactHookFormController,
   useFormState as useReactHookFormState,
-  UseFormReturn,
+  useFieldArray as useReactHookFormFieldArray,
+  Controller as ReactHookFormController,
+  FieldValues,
   UseFormProps,
-  UseControllerProps,
   FieldPath,
+  ControllerProps,
+  FieldArrayPath,
+  UseFieldArrayProps,
+  UseControllerProps,
   UseFormStateProps,
-  createFormControl,
 } from "react-hook-form";
+
+type AsyncDefaultValues<Values> = (payload?: unknown) => Promise<Values>;
+
+type FormContextProps<
+  Values extends FieldValues = FieldValues,
+  Context = unknown,
+  TransformedValues = Values,
+> = UseFormProps<Values, Context, TransformedValues> & {
+  defaultValues:
+    | (Values extends AsyncDefaultValues<Values> ? Awaited<Values> : Values)
+    | AsyncDefaultValues<Values>;
+};
 
 export function createFormContext<
   Values extends FieldValues = FieldValues,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Context = any,
+  Context = unknown,
   TransformedValues = Values,
->() {
-  const formContext = createContext<UseFormReturn<
-    Values,
-    Context,
-    TransformedValues
-  > | null>(null);
-  const formControl = createFormControl<Values, Context, TransformedValues>();
+>(props: FormContextProps<Values, Context, TransformedValues>) {
+  const formControl = createFormControl<Values, Context, TransformedValues>(
+    props,
+  );
+
+  const formContext = createContext(formControl);
 
   const { Provider } = formContext;
 
-  const FormProvider: FC<
-    PropsWithChildren &
-      UseFormProps<Values, Context, TransformedValues> & {
-        defaultValues:
-          | (Values extends (payload?: unknown) => Promise<Values>
-              ? Awaited<Values>
-              : Values)
-          | ((payload?: unknown) => Promise<Values>);
-      }
-  > = ({ children, ...props }) => {
-    const methods = useReactHookForm<Values, Context, TransformedValues>({
-      ...props,
-      formControl,
-    });
-
-    return createElement(Provider, { value: methods }, children);
-  };
+  const FormProvider: FC<PropsWithChildren> = ({ children }) =>
+    createElement(Provider, { value: formControl }, children);
 
   const useDefinedContext = () => {
     const context = useContext(formContext);
@@ -61,6 +54,17 @@ export function createFormContext<
     return context;
   };
 
+  const Controller = <Name extends FieldPath<Values> = FieldPath<Values>>(
+    props: ControllerProps<Values, Name, TransformedValues>,
+  ) => {
+    const { control } = useDefinedContext();
+
+    return createElement(
+      ReactHookFormController<Values, Name, TransformedValues>,
+      { ...props, control },
+    );
+  };
+
   const useForm = () => useDefinedContext();
 
   const useFormState = (
@@ -68,7 +72,7 @@ export function createFormContext<
   ) => {
     const { control } = useDefinedContext();
 
-    return useReactHookFormState({ control, ...props });
+    return useReactHookFormState({ ...props, control });
   };
 
   const useController = <Name extends FieldPath<Values>>(
@@ -76,8 +80,26 @@ export function createFormContext<
   ) => {
     const { control } = useDefinedContext();
 
-    return useReactHookFormController({ control, ...props });
+    return useReactHookFormController({ ...props, control });
   };
 
-  return { FormProvider, useForm, useFormState, useController };
+  const useFieldArray = <
+    ArrayName extends FieldArrayPath<Values>,
+    KeyName extends string = "id",
+  >(
+    props: UseFieldArrayProps<Values, ArrayName, KeyName, TransformedValues>,
+  ) => {
+    const { control } = useDefinedContext();
+
+    return useReactHookFormFieldArray({ ...props, control });
+  };
+
+  return {
+    FormProvider,
+    Controller,
+    useForm,
+    useFormState,
+    useController,
+    useFieldArray,
+  };
 }

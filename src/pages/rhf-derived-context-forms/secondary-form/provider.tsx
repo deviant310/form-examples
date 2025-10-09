@@ -1,5 +1,3 @@
-import { FC, PropsWithChildren } from "react";
-
 import { createFormContext } from "../../../utils/form";
 
 export interface SecondaryFormValues {
@@ -7,22 +5,14 @@ export interface SecondaryFormValues {
   age: number;
 }
 
-const {
-  FormProvider,
+export const {
+  FormProvider: SecondaryFormProvider,
   useForm: useSecondaryForm,
   useFormState: useSecondaryFormState,
   useController: useSecondaryFormController,
-} = createFormContext<SecondaryFormValues>();
-
-export const SecondaryFormProvider: FC<PropsWithChildren> = ({ children }) => (
-  <FormProvider
-    defaultValues={{
-      name: "Anton",
-      age: 33,
-    }}
-  >
-    {children}
-  </FormProvider>
-);
-
-export { useSecondaryForm, useSecondaryFormState, useSecondaryFormController };
+} = createFormContext<SecondaryFormValues>({
+  defaultValues: {
+    name: "Anton",
+    age: 33,
+  },
+});

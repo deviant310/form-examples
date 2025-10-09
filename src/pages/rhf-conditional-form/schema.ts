@@ -2,8 +2,12 @@ export type FraudTypology = "Crypto" | "Other";
 
 export interface FormValues {
   comment: string;
+  reason: string;
   addToTarget: boolean;
   fraudTypology?: FraudTypology | null;
+  a?: {
+    b: number;
+  };
 }
 
 export interface FormValidValues extends FormValues {
