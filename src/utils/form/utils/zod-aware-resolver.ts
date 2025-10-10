@@ -1,11 +1,22 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
-import { object, ZodObject } from "zod";
+import { ZodObject, object } from "zod";
 
 export const zodAwareResolver = ((...args: Parameters<typeof zodResolver>) => {
   const [schema, schemaOptions] = args;
 
   return ((values, context, options) => {
+    if (Object.keys(values).length === 0)
+      return {
+        values: {},
+        errors: {
+          "": {
+            type: "custom",
+            message: "",
+          },
+        },
+      };
+
     const pickedSchema =
       schema instanceof ZodObject ? deepPickByValues(schema, values) : schema;
 

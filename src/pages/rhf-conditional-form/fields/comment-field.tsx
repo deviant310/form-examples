@@ -1,13 +1,11 @@
-import { useController } from "react-hook-form";
-
 import { InputRow } from "../../../ui";
-import { FormValues } from "../schema";
+import { useController } from "../context";
 
 export const CommentField = () => {
   const {
     field,
     fieldState: { error },
-  } = useController<FormValues, "comment">({
+  } = useController({
     name: "comment",
   });
 

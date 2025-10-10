@@ -1,13 +1,11 @@
-import { useController } from "react-hook-form";
-
 import { InputRow } from "../../../ui";
-import { FormValues } from "../schema";
+import { useController } from "../context";
 
 export const ReasonField = () => {
   const {
     field,
     fieldState: { error },
-  } = useController<FormValues, "reason">({
+  } = useController({
     name: "reason",
   });
 
