@@ -16,9 +16,7 @@ interface FormValidValues extends FormValues {
 
 const schema = z.object({
   source: z.string("Source is required"),
-  amount: z
-    .number("Amount is required")
-    .min(0, { message: "Amount must be at least 0" }),
+  amount: z.number("Amount is required").min(0, "Amount must be at least 0"),
 });
 
 export const {
